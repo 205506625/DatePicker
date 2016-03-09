@@ -67,7 +67,7 @@ public class DatePickerView  {
 		Window w=dialog.getWindow();
 //		w.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 		WindowManager.LayoutParams lp = w.getAttributes();
-		lp.dimAmount=0.4f;
+//		lp.dimAmount=0.4f;
 
 		lp.gravity = Gravity.BOTTOM;
 		lp.width = DisplayUtil.getScreenWith(mContext); //设置宽度

@@ -13,7 +13,7 @@
         android:id="@+id/text"
         android:onClick="click"
         android:clickable="true"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />

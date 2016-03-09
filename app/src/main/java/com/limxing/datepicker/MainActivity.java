@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         pickerView.setFromYearAndToYear(1900,2016);
+pickerView.initDate(2016,3,9);
         pickerView.show();
     }
 }
