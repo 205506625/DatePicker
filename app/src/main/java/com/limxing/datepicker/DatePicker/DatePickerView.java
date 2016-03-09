@@ -1,5 +1,6 @@
 package com.limxing.datepicker.DatePicker;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;
@@ -25,12 +26,37 @@ public class DatePickerView  {
 	private Context mContext;
 	private DatePickerListener mListener;
 	private Dialog dialog;
-	private int fromYear=1950;
+	private int fromYear;
 	private int toYear;
 
-	public   DatePickerView(Context context,DatePickerListener listener){
+	private int mYear;
+	private int mMonth;
+	private int mDay;
+
+
+	public DatePickerView(Context context,DatePickerListener listener){
 		mContext=context;
 		mListener=listener;
+		Calendar c = Calendar.getInstance();
+		int norYear = c.get(Calendar.YEAR);
+		int curMonth = c.get(Calendar.MONTH) + 1;
+		int curDate = c.get(Calendar.DATE);
+		fromYear=1950;
+		mYear=toYear=norYear;
+		mMonth=curMonth;
+		mDay=curDate;
+	}
+
+	/**
+	 * 初始化选择器的日期
+	 * @param year
+	 * @param month
+	 * @param day
+	 */
+	public void initDate(int year,int month,int day){
+		mYear=year;
+		mMonth=month;
+		mDay=day;
 	}
 
 	public void show(){
@@ -39,8 +65,10 @@ public class DatePickerView  {
 
 		dialog.setContentView(getDataPick());
 		Window w=dialog.getWindow();
+//		w.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 		WindowManager.LayoutParams lp = w.getAttributes();
 		lp.dimAmount=0.4f;
+
 		lp.gravity = Gravity.BOTTOM;
 		lp.width = DisplayUtil.getScreenWith(mContext); //设置宽度
 		w.setAttributes(lp);
@@ -60,19 +88,14 @@ public class DatePickerView  {
 
 
 	private View getDataPick() {
-		Calendar c = Calendar.getInstance();
-		int norYear = c.get(Calendar.YEAR);
-		int curMonth = c.get(Calendar.MONTH) + 1;
-		int curDate = c.get(Calendar.DATE);
 
-		toYear=norYear;
 		View view = View.inflate(mContext,R.layout.wheel_date_picker, null);
 		view.findViewById(R.id.finish).setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
-				int n_year = year.getCurrentItem() + 1950;//
+				int n_year = year.getCurrentItem() + fromYear;//
 				int n_month = month.getCurrentItem() + 1;//
 				int n_day = day.getCurrentItem() + 1;//
 				mListener.finish(n_year+"-"+n_month+"-"+n_day);
@@ -98,7 +121,7 @@ public class DatePickerView  {
 		month.addScrollingListener(scrollListener);
 
 		day = (WheelView) view.findViewById(R.id.day);
-		initDay(norYear, curMonth);
+		initDay(mYear, mMonth);
 		day.setCyclic(true);
 		day.addScrollingListener(scrollListener);
 
@@ -106,9 +129,9 @@ public class DatePickerView  {
 		month.setVisibleItems(5);
 		day.setVisibleItems(5);
 
-		year.setCurrentItem(norYear - 1950);
-		month.setCurrentItem(curMonth - 1);
-		day.setCurrentItem(curDate - 1);
+		year.setCurrentItem(mYear - fromYear);
+		month.setCurrentItem(mMonth - 1);
+		day.setCurrentItem(mDay - 1);
 
 		return view;
 	}
@@ -169,7 +192,7 @@ public class DatePickerView  {
 
 		@Override
 		public void onScrollingFinished(WheelView wheel) {
-			int n_year = year.getCurrentItem() + 1950;
+			int n_year = year.getCurrentItem() + fromYear;
 			int n_month = month.getCurrentItem() + 1;
 			int n_day = day.getCurrentItem() + 1;
 			initDay(n_year, n_month);

@@ -10,6 +10,7 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowAnimationStyle">@style/mySelect</item>
+        <item name="android:windowSoftInputMode">stateUnspecified</item>
         <!--<item name="android:windowDrawsSystemBarBackgrounds">false</item>-->
     </style>
 </resources>

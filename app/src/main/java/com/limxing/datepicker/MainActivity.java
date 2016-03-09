@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        pickerView.setFromYearAndToYear(1900,2010);
+        pickerView.setFromYearAndToYear(1900,2016);
         pickerView.show();
     }
 }
