@@ -25,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void finish() {
+            public void finish(String string) {
+                text.setText(string);
 
             }
         });
+        pickerView.setFromYearAndToYear(1900,2010);
         pickerView.show();
     }
 }

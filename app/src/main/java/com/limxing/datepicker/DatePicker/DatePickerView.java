@@ -62,7 +62,7 @@ public class DatePickerView  {
 	private View getDataPick() {
 		Calendar c = Calendar.getInstance();
 		int norYear = c.get(Calendar.YEAR);
-		int curMonth = c.get(Calendar.MONTH) + 1;// ͨ��Calendar���������Ҫ+1
+		int curMonth = c.get(Calendar.MONTH) + 1;
 		int curDate = c.get(Calendar.DATE);
 
 		toYear=norYear;
@@ -71,9 +71,11 @@ public class DatePickerView  {
 			
 			@Override
 			public void onClick(View v) {
-
 				dialog.dismiss();
-				mListener.finish();
+				int n_year = year.getCurrentItem() + 1950;//
+				int n_month = month.getCurrentItem() + 1;//
+				int n_day = day.getCurrentItem() + 1;//
+				mListener.finish(n_year+"-"+n_month+"-"+n_day);
 			}
 		});
 
@@ -85,7 +87,7 @@ public class DatePickerView  {
 		numericWheelAdapter1.setLabel("年");
 		numericWheelAdapter1.setTextGravity(Gravity.RIGHT);
 		year.setViewAdapter(numericWheelAdapter1);
-		year.setCyclic(true);// �Ƿ��ѭ������
+		year.setCyclic(true);//
 		year.addScrollingListener(scrollListener);
 
 		NumericWheelAdapter numericWheelAdapter2 = new NumericWheelAdapter(
@@ -100,7 +102,7 @@ public class DatePickerView  {
 		day.setCyclic(true);
 		day.addScrollingListener(scrollListener);
 
-		year.setVisibleItems(5);// ������ʾ����
+		year.setVisibleItems(5);
 		month.setVisibleItems(5);
 		day.setVisibleItems(5);
 
@@ -157,7 +159,7 @@ public class DatePickerView  {
 		return day;
 	}
 	/**
-	 * ������������
+	 *
 	 */
 	OnWheelScrollListener scrollListener = new OnWheelScrollListener() {
 		@Override
@@ -167,9 +169,9 @@ public class DatePickerView  {
 
 		@Override
 		public void onScrollingFinished(WheelView wheel) {
-			int n_year = year.getCurrentItem() + 1950;// ��
-			int n_month = month.getCurrentItem() + 1;// ��
-			int n_day = day.getCurrentItem() + 1;// ��
+			int n_year = year.getCurrentItem() + 1950;
+			int n_month = month.getCurrentItem() + 1;
+			int n_day = day.getCurrentItem() + 1;
 			initDay(n_year, n_month);
 
 			mListener.dateChange(n_year+"-"+n_month+"-"+n_day);
@@ -184,8 +186,8 @@ public class DatePickerView  {
 	}
 	
 	public interface DatePickerListener{
-		public void dateChange(String string);
-		public void finish();
+		 void dateChange(String string);
+		 void finish(String string);
 	}
 
 }
