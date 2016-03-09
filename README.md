@@ -1,10 +1,13 @@
 # DatePicker
 从底部弹出的日期选择器
+
 ![Alt text](/1457534764216.gif)
 
 ###使用
   把整个项目git clone后，把关键代码复制到工程中，注意资源文件的复制
   初始化选择器：
+  
+  
    DatePickerView pickerView=new DatePickerView(MainActivity.this, new DatePickerView.DatePickerListener() {
             @Override
             public void dateChange(String string) {
