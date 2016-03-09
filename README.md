@@ -6,8 +6,7 @@
 ###使用
   把整个项目git clone后，把关键代码复制到工程中，注意资源文件的复制
   初始化选择器：
-  
-  
+   
    DatePickerView pickerView=new DatePickerView(MainActivity.this, new DatePickerView.DatePickerListener() {
             @Override
             public void dateChange(String string) {
