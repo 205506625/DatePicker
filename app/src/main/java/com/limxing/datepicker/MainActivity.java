@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.limxing.datepicker.DatePicker.DatePickerView;
+import com.limxing.library.AlertView;
+import com.limxing.library.OnConfirmeListener;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements OnConfirmeListener {
 
     private TextView text;
 
@@ -15,23 +17,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        text=(TextView)findViewById(R.id.text);
+        text = (TextView) findViewById(R.id.text);
     }
-    public void click(View view){
-        DatePickerView pickerView=new DatePickerView(MainActivity.this, new DatePickerView.DatePickerListener() {
-            @Override
-            public void dateChange(String string) {
-                text.setText(string);
-            }
 
-            @Override
-            public void finish(String string) {
-                text.setText(string);
+    public void click(View view) {
+new AlertView("请选择日期",MainActivity.this,1991,2100,MainActivity.this).show();
 
-            }
-        });
-        pickerView.setFromYearAndToYear(1900,2016);
-pickerView.initDate(2016,3,9);
-        pickerView.show();
+    }
+
+    @Override
+    public void result(String s) {
+        text.setText(s);
     }
 }
