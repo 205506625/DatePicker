@@ -6,7 +6,7 @@
 #### 第二版本更新
 使用view呈现底部弹出的时间选择器,取代了之前用过的Dialog,Popwindow,学习了.
 
-这次我使用了<a src="https://github.com/saiwu-bigkoo/Android-AlertView"> Android-AlertView</a>作为
+这次我使用了<a href="https://github.com/saiwu-bigkoo/Android-AlertView"> Android-AlertView</a>作为
 
 
 ####可参考原作者
